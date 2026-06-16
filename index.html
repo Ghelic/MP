@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MP SYSTEMS — Precision Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #00ffcc;
+      --accent2: #0affff;
+      --bg: #060810;
+      --bg2: #0c0e18;
+      --bg3: #111525;
+      --text: #e8eaf2;
+      --muted: ##a0a8c0;
+      --border: rgba(0, 255, 204, 0.15);
+      --border2: rgba(0, 255, 204, 0.05);
+      --font-mono: 'Share Tech Mono', monospace;
+      --font-body: 'Inter', sans-serif;
+      --font-head: 'Inter', sans-serif;
+      --nav-h: 64px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,204,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,204,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(6,8,16,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo img { height: 32px; }
+
+    .nav-links {
+      display: flex;
+      gap: 2px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 6px 18px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+      border-color: var(--border);
+      background: rgba(0,255,204,0.05);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 80px;
+      overflow: hidden;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 1400px; }
+
+    .hero-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(52px, 7vw, 96px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 1040px;
+      margin-bottom: 40px;
+    }
+
+    .cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn {
+      padding: 12px 28px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); background: rgba(0,255,204,0.05); }
+
+    /* Hero decoration */
+    .hero-deco {
+      position: absolute;
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 600px;
+      height: 600px;
+      opacity: 0.15;
+    }
+
+    .hero-deco circle {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1;
+      animation: rotate 20s linear infinite;
+      transform-origin: 300px 300px;
+    }
+    .hero-deco circle:nth-child(2) { animation-duration: 35s; animation-direction: reverse; }
+    .hero-deco circle:nth-child(3) { animation-duration: 55s; }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Scan line animation */
+    .scanline {
+      position: absolute;
+      left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: scan 6s ease-in-out infinite;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    @keyframes scan {
+      0%   { top: 0; opacity: 0; }
+      5%   { opacity: 0.3; }
+      95%  { opacity: 0.3; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 48px;
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-tag::after {
+      content: '';
+      flex: 1;
+      max-width: 80px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    /* ── PRODUCT PAGE ── */
+    .product-page {
+      min-height: 100vh;
+      display: none;
+      padding-top: var(--nav-h);
+    }
+    .product-page.active { display: block; }
+
+    /* Product hero */
+    .product-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: calc(100vh - var(--nav-h));
+      border-bottom: 1px solid var(--border);
+    }
+
+    .product-hero-text {
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .product-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      padding: 5px 14px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .product-title {
+      font-family: var(--font-head);
+      font-size: clamp(48px, 6vw, 88px);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .product-subtitle {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .product-desc {
+      font-size: 16px;
+      color: var(--muted);
+      width: 100%;
+      max-width: none;
+      line-height: 1.8;
+      margin-bottom: 40px;
+	  text-align: justify; 
+    }
+
+    .product-hero-media {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg2);
+    }
+
+    .product-hero-media img,
+    .product-hero-media svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,255,204,0.04), transparent);
+      pointer-events: none;
+    }
+
+    /* Corner brackets */
+    .bracket {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--accent);
+      border-style: solid;
+      opacity: 0.6;
+    }
+    .bracket-tl { top: 16px; left: 16px; border-width: 1px 0 0 1px; }
+    .bracket-tr { top: 16px; right: 16px; border-width: 1px 1px 0 0; }
+    .bracket-bl { bottom: 16px; left: 16px; border-width: 0 0 1px 1px; }
+    .bracket-br { bottom: 16px; right: 16px; border-width: 0 1px 1px 0; }
+
+    /* ── VIDEO SECTION ── */
+    .video-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      margin-top: 48px;
+    }
+
+    .video-card {
+      background: var(--bg);
+      padding: 0;
+      position: relative;
+    }
+
+    .video-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+    .video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-placeholder {
+      position: relative;
+      padding-bottom: 56.25%;
+      background: var(--bg3);
+      cursor: pointer;
+      overflow: hidden;
+    }
+	.video-placeholder::before {
+	  content: '';
+	  position: absolute;
+	  inset: 0;
+	  background: rgba(6, 8, 16, 0.9);
+	  z-index: 0;
+    }
+    .video-placeholder-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .play-btn {
+      width: 64px;
+      height: 64px;
+      border: 1.5px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .play-btn:hover { background: rgba(0,255,204,0.1); transform: scale(1.05); }
+
+    .play-btn svg { width: 24px; height: 24px; fill: var(--accent); margin-left: 4px; }
+
+    .video-label {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .video-caption {
+      padding: 16px 20px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      border-top: 1px solid var(--border2);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 48px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--bg2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.03); }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px;
+      background: linear-gradient(transparent, rgba(6,8,16,0.9));
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+
+    /* ── SPECS TABLE ── */
+    .specs-section { background: var(--bg2); border-top: 1px solid var(--border); }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 48px;
+      font-size: 14px;
+    }
+
+    .specs-table th {
+      text-align: left;
+      padding: 14px 20px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg3);
+    }
+
+    .specs-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border2);
+      vertical-align: top;
+    }
+
+    .specs-table tr:last-child td { border-bottom: none; }
+
+    .specs-table td:first-child {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      width: 240px;
+    }
+
+    .specs-table td:last-child { color: var(--text); font-weight: 400; }
+
+    .specs-table tr:hover td { background: rgba(0,255,204,0.02); }
+
+    /* ── FEATURE LIST ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      background: var(--bg);
+      padding: 32px 28px;
+      position: relative;
+    }
+
+    .feature-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg2);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── HOME PAGE PRODUCT CARDS ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 64px;
+    }
+
+    .product-card {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .product-card:hover { background: var(--bg3); }
+
+    .product-card-inner { padding: 48px 40px; }
+
+    .product-card-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .product-card-name {
+      font-family: var(--font-head);
+      font-size: 40px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .product-card-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .product-card-excerpt {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 340px;
+      margin-bottom: 28px;
+    }
+
+    .product-card-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      transition: gap 0.2s;
+    }
+    .product-card:hover .product-card-arrow { gap: 14px; }
+    .product-card-arrow::after { content: '→'; }
+
+    .product-card-thumb {
+      height: 220px;
+      overflow: hidden;
+      background: var(--bg);
+      border-top: 1px solid var(--border2);
+    }
+
+    .product-card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+      transition: opacity 0.3s, transform 0.5s;
+    }
+    .product-card:hover .product-card-thumb img { opacity: 0.9; transform: scale(1.04); }
+
+    /* ── HAMBURGER MENU ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0;
+      background: rgba(6,8,16,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+      padding: 8px 0;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block;
+      padding: 16px 24px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border2);
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover, .mobile-menu a.active {
+      color: var(--accent);
+      background: rgba(0,255,204,0.04);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      section, .hero { padding: 48px 20px; }
+
+      /* Hero */
+      .hero { min-height: auto; padding: 100px 20px 60px; }
+      .hero-deco { display: none; }
+      .hero h1 { font-size: 52px; }
+      .hero p { font-size: 15px; }
+      .cta-row { flex-direction: column; }
+      .cta-row .btn { text-align: center; }
+
+      /* Product hero */
+      .product-hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: 260px auto;
+        min-height: auto;
+      }
+      .product-hero-media { order: -1; border-right: none; border-bottom: 1px solid var(--border); }
+      .product-hero-text { padding: 36px 20px; border-right: none; }
+      .product-title { font-size: 44px; }
+      .product-desc { font-size: 14px; }
+
+      /* Home product grid */
+      .products-grid { grid-template-columns: 1fr; }
+      .product-card-inner { padding: 28px 20px; }
+      .product-card-thumb { height: 180px; }
+
+      /* Video — single column */
+      .video-grid { grid-template-columns: 1fr; }
+
+      /* Gallery — single column */
+      .gallery { grid-template-columns: 1fr; }
+      .gallery-item { aspect-ratio: 16/9; }
+
+      /* Specs table — stack label above value */
+      .specs-table thead { display: none; }
+      .specs-table tr {
+        display: block;
+        border-bottom: 1px solid var(--border2);
+        padding: 10px 0;
+      }
+      .specs-table td {
+        display: block;
+        padding: 3px 16px;
+        width: 100% !important;
+      }
+      .specs-table td:first-child {
+        font-size: 10px;
+        color: var(--accent);
+        margin-bottom: 2px;
+      }
+      .specs-table td:last-child { font-size: 14px; }
+
+      /* Features */
+      .features-grid { grid-template-columns: 1fr; }
+
+      footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 40px; }
+      .section-title { font-size: 30px; }
+      .product-title { font-size: 36px; }
+      .product-card-name { font-size: 30px; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim { animation: fadeUp 0.7s ease both; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.2s; }
+    .anim-d3 { animation-delay: 0.35s; }
+    .anim-d4 { animation-delay: 0.5s; }
+
+    /* Blinking cursor */
+    .cursor::after {
+      content: '█';
+      color: var(--accent);
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Pulse dot */
+    .pulse {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 8px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,255,204,0.4); }
+      50%      { opacity: 0.8; box-shadow: 0 0 0 6px rgba(0,255,204,0); }
+    }
+	.hero h1, .product-title, .section-title {
+      font-variation-settings: 'wght' 900;
+      letter-spacing: -0.03em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ NAVIGATION ════ -->
+<nav>
+  <a class="logo" href="#" onclick="showPage('home'); return false;">
+    <img src="img/mp.png" alt="MP Systems Logo" />
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('mpmini'); return false;" data-page="mpmini">MP MINI</a></li>
+    <li><a href="#" onclick="showPage('mpstandard'); return false;" data-page="mpstandard">MP STANDARD</a></li>
+    <li><a href="#" onclick="showPage('mpsniper'); return false;" data-page="mpsniper">MP SNIPER</a></li>
+    <li><a href="#" onclick="showPage('mpforce'); return false;" data-page="mpforce">MP FORCE UNIT</a></li>
+  </ul>
+</nav>
+
+<!-- ════ MOBILE MENU ════ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showPage('mpmini'); closeMobileMenu(); return false;" data-page="mpmini">MP MINI</a>
+  <a href="#" onclick="showPage('mpstandard'); closeMobileMenu(); return false;" data-page="mpstandard">MP STANDARD</a>
+  <a href="#" onclick="showPage('mpsniper'); closeMobileMenu(); return false;" data-page="mpsniper">MP SNIPER</a>
+  <a href="#" onclick="showPage('mpforce'); closeMobileMenu(); return false;" data-page="mpforce">MP FORCE UNIT</a>
+</div>
+
+<!-- ════ HOME PAGE ════ -->
+<div id="page-home" class="product-page active">
+  <section class="hero">
+    <div class="scanline"></div>
+    <svg class="hero-deco" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="300" cy="300" r="250" stroke-dasharray="4,12"/>
+      <circle cx="300" cy="300" r="180" stroke-dasharray="8,16"/>
+      <circle cx="300" cy="300" r="110" stroke-dasharray="2,8"/>
+      <line x1="300" y1="50" x2="300" y2="550" stroke-width="0.5" stroke="rgba(0,255,204,0.3)"/>
+      <line x1="50" y1="300" x2="550" y2="300" stroke-width="0.5" stroke="rgba(0,255,204,0.3)"/>
+      <circle cx="300" cy="300" r="6" fill="rgba(0,255,204,0.8)"/>
+    </svg>
+
+    <div class="hero-content">
+      <p class="hero-tag anim"><span class="pulse"></span>Next Generation Compact · Reliable · Mission-Ready UAV PLATFORM</p>
+      <h1 class="anim anim-d1">MP<br/><span>SYSTEM</span></h1>
+	  <p class="product-subtitle">One System. Multiple Missions.</p>
+	  <p class="anim anim-d2" style="text-align: justify;">MP SYSTEM is a family of tactical unmanned aerial systems engineered for frontline operators. Designed for rapid deployment and mission adaptability, it delivers critical aerial capabilities directly to the battlefield, empowering individual soldiers and small units with unmatched situational awareness and operational flexibility. The MP SYSTEM portfolio consists of four mission-focused platforms: MP MINI, MP STANDARD,  MP SNIPER and  MP FORCE UNIT. From intelligence gathering and persistent surveillance to precision mission execution and payload transport, MP SYSTEM provides the versatility required for today's evolving operational environments. Built around a modular architecture and field-proven reliability, every platform is designed to be quick to deploy, easy to operate, simple to maintain, and ready when it matters most. Minimal training, rapid assembly, and streamlined logistics enable operators to focus on the mission—not the equipment. Whether supporting reconnaissance, tactical operations, security missions, or logistics support, MP SYSTEM delivers a powerful force multiplier for modern warfare.
+	  </p>
+      <div class="cta-row anim anim-d3">
+        <a class="btn btn-primary" href="#" onclick="showPage('mpmini'); return false;">Explore Products</a>
+        <a class="btn btn-outline" href="#products">View Lineup</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" style="padding-top: 0;">
+    <div style="padding: 80px 48px 0;">
+      <p class="section-tag">Product Lineup</p>
+      <h2 class="section-title">Four Platforms</h2>
+      <p style="color: var(--muted); max-width: 540px;">Reconnaissance. Precision Operations. Logistics Support.</p>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- MPMINI -->
+      <div class="product-card" onclick="showPage('mpmini')">
+        <div class="product-card-inner">
+          <p class="product-card-num">01 / 04</p>
+          <h3 class="product-card-name">MP MINI</h3>
+          <p class="product-card-tag">Compact Reconnaissance UAV Platform</p>
+          <span class="product-card-arrow">View Specs</span>
+        </div>
+        <div class="product-card-thumb">
+          <img src="img/mp-mini.jpg" alt="MPMINI" />
+        </div>
+      </div>
+
+      <!-- MPSTANDARD -->
+      <div class="product-card" onclick="showPage('mpstandard')">
+        <div class="product-card-inner">
+          <p class="product-card-num">02 / 04</p>
+          <h3 class="product-card-name">MP STANDARD</h3>
+          <p class="product-card-tag">Multi-Purpose Compact UAV Platform</p>
+          <span class="product-card-arrow">View Specs</span>
+        </div>
+        <div class="product-card-thumb">
+          <img src="img/mp-standard.jpg" alt="MPSTANDARD" />
+        </div>
+      </div>
+
+      <!-- MPSNIPER -->
+      <div class="product-card" onclick="showPage('mpsniper')">
+        <div class="product-card-inner">
+          <p class="product-card-num">03 / 04</p>
+          <h3 class="product-card-name">MP SNIPER</h3>
+          <p class="product-card-tag">Multi-Purpose Heavy-lift Tactical UAV Platform</p>
+          <span class="product-card-arrow">View Specs</span>
+        </div>
+        <div class="product-card-thumb">
+          <img src="img/mp-sniper.jpg" alt="MPSNIPER" />
+        </div>
+      </div>
+
+      <!-- MP FORCE UNIT -->
+      <div class="product-card" onclick="showPage('mpforce')">
+        <div class="product-card-inner">
+          <p class="product-card-num">04 / 04</p>
+          <h3 class="product-card-name">MP FORCE UNIT</h3>
+          <p class="product-card-tag">Multi-Purpose Mission Unit</p>
+          <span class="product-card-arrow">View Specs</span>
+        </div>
+        <div class="product-card-thumb">
+          <img src="img/mp-force-unit.png" alt="MP Force Unit" />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 MP Systems — All Rights Reserved</span>
+    <span style="color: var(--accent);"><span class="pulse"></span>System Online</span>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════ -->
+<!-- MPMINI PAGE                     -->
+<!-- ════════════════════════════════ -->
+<div id="page-mpmini" class="product-page">
+
+  <div class="product-hero">
+    <div class="product-hero-text">
+      <span class="product-badge">01 / 04</span>
+      <h1 class="product-title">MP<br/>MINI</h1>
+      <p class="product-subtitle">Compact Reconnaissance UAV Platform</p>
+      <p class="product-desc">
+       MP MINI is a compact reconnaissance platform designed for pre-operation intelligence and surveillance missions. Featuring a foldable and lightweight airframe, it is easy to carry and rapidly deploy, enabling effective single-operator to be used in field environments. The system is equipped with a high-definition gimbal camera that supports quick detachment and modular assembly for flexible mission adaptation. Powered by a high-performance H7-class processor, the flight controller delivers stable flight performance and real-time data processing. The ground control unit supports both manual remote control and autonomous mission planning, allowing predefined flight routes and reconnaissance tasks to be executed automatically.
+
+      </p>
+      <div class="cta-row">
+        <a href="#mpmini-specs" class="btn btn-primary">View Specifications</a>
+      </div>
+    </div>
+    <div class="product-hero-media">
+      <img src="img/mp-mini.jpg" alt="MPMINI Product" />
+      <div class="media-overlay"></div>
+      <div class="bracket bracket-tl"></div>
+      <div class="bracket bracket-tr"></div>
+      <div class="bracket bracket-bl"></div>
+      <div class="bracket bracket-br"></div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section>
+    <p class="section-tag">Core Capabilities</p>
+    <h2 class="section-title">Built Different</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <p class="feature-num">/ 01</p>
+        <h3 class="feature-title">Rapid Deployment</h3>
+        <p class="feature-desc">Foldable and lightweight for immediate field operations.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 02</p>
+        <h3 class="feature-title">Single-Operator Mission</h3>
+        <p class="feature-desc">Designed for efficient operation by one person.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 03</p>
+        <h3 class="feature-title">Modular Payload System</h3>
+        <p class="feature-desc">Quick-swap camera and payload configuration.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 04</p>
+        <h3 class="feature-title">Autonomous Reconnaissance</h3>
+        <p class="feature-desc">Intelligent mission planning and automated execution.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section">
+    <p class="section-tag">In Action</p>
+    <h2 class="section-title">See It Operate</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-placeholder"
+             onclick="window.open('https://www.youtube.com/watch?v=jNQXAC9IVRw','_blank')"
+             style="cursor:pointer;background-image: url('img/mp-mini.jpg'); background-size: cover; background-position: center;">
+          <div class="video-placeholder-inner">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"> <path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="video-label">Video 01 — System Overview</span>
+          </div>
+        </div>
+        <div class="video-caption">
+          <span>MP MINI / System Integration</span>
+          <span style="color: var(--accent);">// Add video URL</span>
+        </div>
+      </div>
+      <div class="video-card">
+                <div class="video-placeholder"
+             onclick="window.open('https://www.youtube.com/watch?v=jNQXAC9IVRw','_blank')"
+             style="cursor:pointer;background-image: url('img/mp-mini.jpg'); background-size: cover; background-position: center;">
+          <div class="video-placeholder-inner">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"> <path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="video-label">Video 02 — Module Swap</span>
+          </div>
+        </div>
+        <div class="video-caption">
+          <span>MP MINI / Modular Configuration</span>
+          <span style="color: var(--accent);">// Add video URL</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Gallery -->
+  <section>
+    <p class="section-tag">Gallery</p>
+    <h2 class="section-title">Product Views</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="img/mp-mini.jpg" alt="MPMINI View 1" />
+        <div class="gallery-caption">Front Perspective</div>
+      </div>
+      <div class="gallery-item">
+        <img src="img/mp-mini.jpg" alt="MPMINI View 2" />
+        <div class="gallery-caption">Side Profile</div>
+      </div>
+      <div class="gallery-item">
+        <img src="img/mp-mini.jpg" alt="MPMINI View 3" />
+        <div class="gallery-caption">Interface Detail</div>
+      </div>
+      <div class="gallery-item">
+        <img src="img/mp-mini.jpg" alt="MPMINI View 4" />
+        <div class="gallery-caption">Deployment Context</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specs -->
+  <section id="mpmini-specs" class="specs-section">
+    <p class="section-tag">Technical Data</p>
+    <h2 class="section-title">Specifications</h2>
+    <table class="specs-table">
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Dimensions</td><td>420 × 420 × 320 mm (inc prop) | 300 × 130 × 110 mm (folded)</td></tr>
+        <tr><td>Weight</td><td>1.7kg (without battery) | 2.9kg (with battery)</td></tr>
+        <tr><td>Payload</td><td>MAX 3kg</td></tr>
+        <tr><td>Air Speed</td><td>up to 28m/s</td></tr>
+        <tr><td>Endurance</td><td>no payload: 52mins | 200g payload: 35mins | 500g payload:2 25mins</td></tr>
+        <tr><td>Payload</td><td>MAX 3kg</td></tr>
+        <tr><td>Wind Resistance</td><td>sustained: 12m/s | MAX: 16m/s</td></tr>
+        <tr><td>Operating Radius</td><td>8km</td></tr>
+        <tr><td>Camera</td><td>gimbal/optical zoom 10X</td></tr>
+        <tr><td>Power</td><td>14.8v 10A lipo  | 14.8v 16A lipo battery pack </td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <span>MP SYSTEMS — MP MINI</span>
+    <a href="#" onclick="showPage('home'); return false;" style="color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;">← Back to Lineup</a>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════ -->
+<!-- MPSTANDARD PAGE                 -->
+<!-- ════════════════════════════════ -->
+<div id="page-mpstandard" class="product-page">
+
+  <div class="product-hero">
+    <div class="product-hero-text">
+      <span class="product-badge">02 / 04</span>
+      <h1 class="product-title">MP<br/>STANDARD</h1>
+      <p class="product-subtitle">Multi-Purpose Compact UAV Platform</p>
+      <p class="product-desc">
+        MPSTANDARD is a compact, multi-purpose aerial platform designed for versatile mission scenarios. Its flight controller is powered by a high-performance H7-class processor, delivering fast computation and stable flight control. The foldable airframe design enables easy transportation and rapid deployment, ensuring intuitive operation and high efficiency. Equipped with a high-definition gimbal camera, the system supports quick detachment and modular assembly to adapt to different mission requirements. The ground control unit allows both manual remote operation and autonomous mission planning, enabling the UAV to execute predefined flight routes and tasks automatically. With support for small payload integration, the platform offers flexible expandability for diverse applications.
+
+      </p>
+      <div class="cta-row">
+        <a href="#mpstandard-specs" class="btn btn-primary">View Specifications</a>
+      </div>
+    </div>
+    <div class="product-hero-media">
+      <img src="img/mp-standard.jpg" alt="MPSTANDARD Product" />
+      <div class="media-overlay"></div>
+      <div class="bracket bracket-tl"></div>
+      <div class="bracket bracket-tr"></div>
+      <div class="bracket bracket-bl"></div>
+      <div class="bracket bracket-br"></div>
+    </div>
+  </div>
+
+  <section>
+    <p class="section-tag">Core Capabilities</p>
+    <h2 class="section-title">Built Different</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <p class="feature-num">/ 01</p>
+        <h3 class="feature-title">Mission Versatility</h3>
+        <p class="feature-desc">Adaptable to a wide range of operational requirements.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 02</p>
+        <h3 class="feature-title">Deploy Anywhere</h3>
+        <p class="feature-desc">Compact foldable design for rapid deployment.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 03</p>
+        <h3 class="feature-title">Payload Flexibility</h3>
+        <p class="feature-desc">Modular architecture supports diverse payload configurations.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 04</p>
+        <h3 class="feature-title">Smart Autonomy</h3>
+        <p class="feature-desc">Automated mission planning and execution with minimal workload.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section">
+    <p class="section-tag">In Action</p>
+    <h2 class="section-title">See It Operate</h2>
+    <div class="video-grid">
+      <div class="video-card">
+	    <div class="video-placeholder"
+             onclick="window.open('https://www.youtube.com/watch?v=jNQXAC9IVRw','_blank')"
+             style="cursor:pointer;background-image: url('img/mp-standard.jpg'); background-size: cover; background-position: center;">
+          <div class="video-placeholder-inner">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="video-label">Video 01 — System Overview</span>
+          </div>
+        </div>
+        <div class="video-caption">
+          <span>MP STANDARD / System Integration</span>
+          <span style="color: var(--accent);">// Add video URL</span>
+        </div>
+      </div>
+      <div class="video-card">
+	   <div class="video-placeholder"
+             onclick="window.open('https://www.youtube.com/watch?v=jNQXAC9IVRw','_blank')"
+             style="cursor:pointer;background-image: url('img/mp-standard.jpg'); background-size: cover; background-position: center;">
+          <div class="video-placeholder-inner">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="video-label">Video 02 — Module Swap</span>
+          </div>
+        </div>
+        <div class="video-caption">
+          <span>MP STANDARD / Modular Configuration</span>
+          <span style="color: var(--accent);">// Add video URL</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-tag">Gallery</p>
+    <h2 class="section-title">Product Views</h2>
+    <div class="gallery">
+      <div class="gallery-item"><img src="img/mp-standard.jpg" alt="MPSTANDARD View 1" /><div class="gallery-caption">Main Unit</div></div>
+      <div class="gallery-item"><img src="img/mp-standard.jpg" alt="MPSTANDARD View 2" /><div class="gallery-caption">Module Expansion Bay</div></div>
+      <div class="gallery-item"><img src="img/mp-standard.jpg" alt="MPSTANDARD View 3" /><div class="gallery-caption">Interface Panel</div></div>
+      <div class="gallery-item"><img src="img/mp-standard.jpg" alt="MPSTANDARD View 4" /><div class="gallery-caption">Field Deployment</div></div>
+    </div>
+  </section>
+
+  <section id="mpstandard-specs" class="specs-section">
+    <p class="section-tag">Technical Data</p>
+    <h2 class="section-title">Specifications</h2>
+    <table class="specs-table">
+      <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Dimensions</td><td>520 × 520 × 420 mm (inc prop) | 340 × 150 × 120 mm (folded)</td></tr>
+        <tr><td>Weight</td><td>2.2kg (without battery) | 3.5kg (with battery)</td></tr>
+        <tr><td>Payload</td><td>MAX 3kg</td></tr>
+        <tr><td>Air Speed</td><td>up to 28m/s</td></tr>
+        <tr><td>Endurance</td><td>no payload: 48mins | 500g payload: 38mins | 1200g payload: 24mins</td></tr>
+        <tr><td>Payload</td><td>MAX 3kg</td></tr>
+        <tr><td>Wind Resistance</td><td>sustained: 14m/s | MAX: 18m/s</td></tr>
+        <tr><td>Operating Radius</td><td>8km</td></tr>
+        <tr><td>Camera</td><td>gimbal/optical zoom 10X | LRF</td></tr>
+        <tr><td>Power</td><td>22.2v 10A lipo  | 22.2v 16A lipo battery pack </td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <span>MP SYSTEMS — MP STANDARD</span>
+    <a href="#" onclick="showPage('home'); return false;" style="color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;">← Back to Lineup</a>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════ -->
+<!-- MPSNIPER PAGE                   -->
+<!-- ════════════════════════════════ -->
+<div id="page-mpsniper" class="product-page">
+
+  <div class="product-hero">
+    <div class="product-hero-text">
+      <span class="product-badge">03 / 04</span>
+      <h1 class="product-title">MP<br/>SNIPER</h1>
+      <p class="product-subtitle">Multi-Purpose Heavy-lift Tactical UAV Platform</p>
+      <p class="product-desc">
+        MP SNIPER is a multi-role intelligent aerial platform designed for a wide range of operational scenarios. The flight control system is powered by a high-performance H7-class processor, enabling high-speed data processing and stable flight control. The airframe features a foldable design, ensuring portability, rapid deployment, and ease of operation in field conditions. The platform is equipped with a high-definition gimbal camera system that supports quick-release and modular replacement, allowing adaptation to diverse mission requirements. The dedicated ground control unit enables real-time remote operation as well as mission planning and waypoint configuration. The UAV can execute pre-programmed autonomous missions, ensuring efficient and reliable task performance. The platform incorporates modular payload interfaces, enabling integration of various mission-specific payloads. Combined with a high-precision stabilized gimbal system, it supports accurate targeting and payload operation. This flexible architecture allows the UAV to be configured for a wide range of operational roles, enhancing overall mission adaptability and effectiveness.
+      </p>
+      <div class="cta-row">
+        <a href="#mpsniper-specs" class="btn btn-primary">View Specifications</a>
+      </div>
+    </div>
+    <div class="product-hero-media">
+      <img src="img/mp-sniper.jpg" alt="MPSNIPER Product" />
+      <div class="media-overlay"></div>
+      <div class="bracket bracket-tl"></div>
+      <div class="bracket bracket-tr"></div>
+      <div class="bracket bracket-bl"></div>
+      <div class="bracket bracket-br"></div>
+    </div>
+  </div>
+
+  <section>
+    <p class="section-tag">Core Capabilities</p>
+    <h2 class="section-title">Built Different</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <p class="feature-num">/ 01</p>
+        <h3 class="feature-title">Precision Targeting</h3>
+        <p class="feature-desc">Accurate observation and payload operation.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 02</p>
+        <h3 class="feature-title">Payload Flexibility</h3>
+        <p class="feature-desc">Mission-configurable modular architecture.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 03</p>
+        <h3 class="feature-title">Autonomous Missions</h3>
+        <p class="feature-desc">Pre-programmed and waypoint-based operations.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 04</p>
+        <h3 class="feature-title">Rapid Deployment</h3>
+        <p class="feature-desc">Foldable, portable, and mission-ready.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section">
+    <p class="section-tag">In Action</p>
+    <h2 class="section-title">See It Operate</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-placeholder"
+             onclick="window.open('https://www.youtube.com/watch?v=jNQXAC9IVRw','_blank')"
+             style="cursor:pointer;background-image: url('img/mp-sniper.jpg'); background-size: cover; background-position: center;">
+          <div class="video-placeholder-inner">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <span class="video-label">Video 01 — Range Test</span>
+          </div>
+        </div>
+        <div class="video-caption"><span>MP SNIPER / Extended Range Test</span><span style="color: var(--accent);">// Add video URL</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-placeholder"
+             onclick="window.open('https://www.youtube.com/watch?v=jNQXAC9IVRw','_blank')"
+             style="cursor:pointer;background-image: url('img/mp-sniper.jpg'); background-size: cover; background-position: center;">
+          <div class="video-placeholder-inner">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <span class="video-label">Video 02 — Precision Demo</span>
+          </div>
+        </div>
+        <div class="video-caption"><span>MP SNIPER / Precision Analysis</span><span style="color: var(--accent);">// Add video URL</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-tag">Gallery</p>
+    <h2 class="section-title">Product Views</h2>
+    <div class="gallery">
+      <div class="gallery-item"><img src="img/mp-sniper.jpg" alt="MPSNIPER View 1" /><div class="gallery-caption">System Overview</div></div>
+      <div class="gallery-item"><img src="img/mp-sniper.jpg" alt="MPSNIPER View 2" /><div class="gallery-caption">Antenna Array</div></div>
+      <div class="gallery-item"><img src="img/mp-sniper.jpg" alt="MPSNIPER View 3" /><div class="gallery-caption">Processing Core</div></div>
+      <div class="gallery-item"><img src="img/mp-sniper.jpg" alt="MPSNIPER View 4" /><div class="gallery-caption">Field Setup</div></div>
+    </div>
+  </section>
+
+  <section id="mpsniper-specs" class="specs-section">
+    <p class="section-tag">Technical Data</p>
+    <h2 class="section-title">Specifications</h2>
+    <table class="specs-table">
+      <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Dimensions</td><td>2350 × 2350 × 1100 mm (inc prop) | 420 × 888 × 330 mm (folded)</td></tr>
+        <tr><td>Weight</td><td>28kg (without battery) | 56kg (with battery)</td></tr>
+        <tr><td>Payload</td><td>MAX 60kg</td></tr>
+        <tr><td>Air Speed</td><td>up to 24m/s</td></tr>
+        <tr><td>Endurance</td><td>no payload: 55mins | 30kg payload: 35mins | 50kg payload: 18mins</td></tr>
+        <tr><td>Payload</td><td>MAX 60kg</td></tr>
+        <tr><td>Wind Resistance</td><td>sustained: 16m/s | MAX: 20m/s</td></tr>
+        <tr><td>Operating Radius</td><td>8km</td></tr>
+        <tr><td>Camera</td><td>gimbal/optical zoom 10X | LRF</td></tr>
+        <tr><td>Power</td><td>44.4v 40A lipo  | 44.4v 60A lipo  battery pack </td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <span>MP SYSTEMS — MP SNIPER</span>
+    <a href="#" onclick="showPage('home'); return false;" style="color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;">← Back to Lineup</a>
+  </footer>
+</div>
+
+
+<!-- ════════════════════════════════ -->
+<!-- MP FORCE UNIT PAGE              -->
+<!-- ════════════════════════════════ -->
+<div id="page-mpforce" class="product-page">
+
+  <div class="product-hero">
+    <div class="product-hero-text">
+      <span class="product-badge">04 / 04</span>
+      <h1 class="product-title">MP FORCE<br/>UNIT</h1>
+      <p class="product-subtitle">Multi-Purpose Mission Unit</p>
+      <p class="product-desc">
+        MP FORCE UNIT is a highly integrated mission support unit designed for unmanned aerial vehicle (UAV) forces. Built with reinforced composite materials, the interior features customizable partitions and high-density protective foam to ensure secure storage and rapid deployment of mission assets. The UNIT accommodates two multi-rotor UAVs, two stabilized gimbal camera systems, four high-capacity batteries, a ground control unit, and a mission payload carrier module capable of supporting interchangeable operational payloads. The design emphasizes modularity, standardization, and battlefield adaptability, enabling efficient transportation, quick readiness, and reliable support for reconnaissance, surveillance, and mission execution in demanding operational environments.
+      </p>
+      <div class="cta-row">
+        <a href="#mpforce-specs" class="btn btn-primary">View Specifications</a>
+      </div>
+    </div>
+    <div class="product-hero-media">
+      <img src="img/mp-force-unit.png" alt="MP Force Unit Product" />
+      <div class="media-overlay"></div>
+      <div class="bracket bracket-tl"></div>
+      <div class="bracket bracket-tr"></div>
+      <div class="bracket bracket-bl"></div>
+      <div class="bracket bracket-br"></div>
+    </div>
+  </div>
+
+  <section>
+    <p class="section-tag">Core Capabilities</p>
+    <h2 class="section-title">Mission Ready </h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <p class="feature-num">/ 01</p>
+        <h3 class="feature-title">Integrated Support</h3>
+        <p class="feature-desc">Mission-critical assets in one platform.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 02</p>
+        <h3 class="feature-title">Modular Payloads</h3>
+        <p class="feature-desc">Flexible mission configurations.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 03</p>
+        <h3 class="feature-title">Rapid Readiness</h3>
+        <p class="feature-desc">Deploy faster when every second counts.</p>
+      </div>
+      <div class="feature-card">
+        <p class="feature-num">/ 04</p>
+        <h3 class="feature-title">Battlefield Adaptability</h3>
+        <p class="feature-desc">Built for demanding operational environments.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="video-section">
+    <p class="section-tag">In Action</p>
+    <h2 class="section-title">See It Operate</h2>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-placeholder"
+             onclick="window.open('https://www.youtube.com/watch?v=jNQXAC9IVRw','_blank')"
+             style="cursor:pointer;background-image: url('img/mp-force-unit.png'); background-size: cover; background-position: center;">
+          <div class="video-placeholder-inner">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <span class="video-label">Video 01 — Load Test</span>
+          </div>
+        </div>
+        <div class="video-caption"><span>MP FORCE UNIT / Full Load Test</span><span style="color: var(--accent);">// Add video URL</span></div>
+      </div>
+      <div class="video-card">
+        <div class="video-placeholder"
+             onclick="window.open('https://www.youtube.com/watch?v=jNQXAC9IVRw','_blank')"
+             style="cursor:pointer;background-image: url('img/mp-force-unit.png'); background-size: cover; background-position: center;">
+          <div class="video-placeholder-inner">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+            <span class="video-label">Video 02 — Installation</span>
+          </div>
+        </div>
+        <div class="video-caption"><span>MP FORCE UNIT / Installation Guide</span><span style="color: var(--accent);">// Add video URL</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-tag">Gallery</p>
+    <h2 class="section-title">Product Views</h2>
+    <div class="gallery">
+      <div class="gallery-item"><img src="img/mp-force-unit.png" alt="MP Force Unit View 1" /><div class="gallery-caption">Full System</div></div>
+      <div class="gallery-item"><img src="img/mp-force-unit.png" alt="MP Force Unit View 2" /><div class="gallery-caption">Power Module</div></div>
+      <div class="gallery-item"><img src="img/mp-force-unit.png" alt="MP Force Unit View 3" /><div class="gallery-caption">Cooling System</div></div>
+      <div class="gallery-item"><img src="img/mp-force-unit.png" alt="MP Force Unit View 4" /><div class="gallery-caption">Rack-Mount Config</div></div>
+    </div>
+  </section>
+
+  <section id="mpforce-specs" class="specs-section">
+    <p class="section-tag">Technical Data</p>
+    <h2 class="section-title">Specifications</h2>
+    <table class="specs-table">
+      <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Dimensions</td><td>700 × 550 × 440 mm</td></tr>
+        <tr><td>Weight</td><td>40kg</td></tr>
+		<tr><td>UAV Platform</td><td>MP STANDARD  X 2</td></tr>
+        <tr><td>Camera</td><td>gimbal/optical zoom 10x  X 2</td></tr>
+		<tr><td>GCS</td><td>MP STANDARD GCS  X 1</td></tr>
+        <tr><td>Mission Equipment</td><td>mission module  X 2</td></tr>
+        <tr><td>Payload</td><td>tactical munition box  X 1</td></tr>
+        <tr><td>Battery</td><td>22.2v 10A lipo battery pack  X 4</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <span>MP SYSTEMS — MP FORCE UNIT</span>
+    <a href="#" onclick="showPage('home'); return false;" style="color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;">← Back to Lineup</a>
+  </footer>
+</div>
+
+
+<!-- ════ JAVASCRIPT ════ -->
+<script>
+  const pages = ['home', 'mpmini', 'mpstandard', 'mpsniper', 'mpforce'];
+
+  function showPage(id) {
+    pages.forEach(p => {
+      document.getElementById('page-' + p).classList.remove('active');
+    });
+    document.getElementById('page-' + id).classList.add('active');
+
+    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === id);
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  document.getElementById('hamburger').addEventListener('click', function () {
+    this.classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+
+  // Hash-based routing for GitHub Pages
+  function routeFromHash() {
+    const hash = location.hash.replace('#', '') || 'home';
+    if (pages.includes(hash)) showPage(hash);
+  }
+
+  window.addEventListener('hashchange', routeFromHash);
+  routeFromHash();
+</script>
+
+</body>
+</html>
